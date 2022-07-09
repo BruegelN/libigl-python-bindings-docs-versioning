@@ -1,0 +1,26 @@
+[project]
+requires-python = ">=3.6"
+name = "libigl"
+
+[build-system]
+requires = ["setuptools>=42",
+            "wheel",
+            "Cython",
+            "numpy",
+            "scipy"
+            ]
+
+[tool.cibuildwheel]
+# Build for cpython only
+skip =  "pp*"
+
+# Build only on 64-bit architectures.
+archs = ["auto64"]
+
+[tool.cibuildwheel.macos]
+# Build for x86_64 and arm64
+archs = ["x86_64", "arm64"]
+
+[tool.cibuildwheel.linux]
+# dependencies do not build for musl
+skip = ["pp* *musllinux*"]
